@@ -7,6 +7,9 @@ class Huffman:
     @staticmethod
     def create_tree(sentence):
         list_of_count_of_letters = Huffman.__get_list_of_count_of_letters(sentence)
+        list_of_count_of_letters = Huffman.__create_array(list_of_count_of_letters)
+        list_of_count_of_letters = MinHeap.build_min_heap(list_of_count_of_letters)
+
         array_of_nodes = Huffman.__create_array_of_nodes(list_of_count_of_letters)
         return Tree(array_of_nodes)
 
@@ -19,13 +22,20 @@ class Huffman:
             else:
                 letter_with_count[letter] = 1
 
-        tmp_heap_min = MinHeap.build_min_heap(list(letter_with_count.values()))
-
-        return dict(zip(tmp_heap_min, letter_with_count.keys()))
+        return letter_with_count
 
     @staticmethod
     def __create_array_of_nodes(array):
         array_of_nodes = []
-        for key in array:
-            array_of_nodes.append(Node(key, array[key], None, None))
+        for letter in array:
+            array_of_nodes.append(Node(letter[0], letter[1], None, None))
         return array_of_nodes
+
+    @staticmethod
+    def __create_array(list_of_count_of_letters):
+        array_of_arrays = []
+
+        for key, value in list_of_count_of_letters.items():
+            array_of_arrays.append([key, value])
+
+        return array_of_arrays
