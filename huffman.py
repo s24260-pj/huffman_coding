@@ -1,0 +1,31 @@
+from node import Node
+from tree import Tree
+from min_heap import MinHeap
+
+
+class Huffman:
+    @staticmethod
+    def create_tree(sentence):
+        list_of_count_of_letters = Huffman.__get_list_of_count_of_letters(sentence)
+        array_of_nodes = Huffman.__create_array_of_nodes(list_of_count_of_letters)
+        return Tree(array_of_nodes)
+
+    @staticmethod
+    def __get_list_of_count_of_letters(text):
+        letter_with_count = {}
+        for letter in text:
+            if letter in letter_with_count:
+                letter_with_count[letter] += 1
+            else:
+                letter_with_count[letter] = 1
+
+        tmp_heap_min = MinHeap.build_min_heap(list(letter_with_count.values()))
+
+        return dict(zip(tmp_heap_min, letter_with_count.keys()))
+
+    @staticmethod
+    def __create_array_of_nodes(array):
+        array_of_nodes = []
+        for key in array:
+            array_of_nodes.append(Node(key, array[key], None, None))
+        return array_of_nodes
