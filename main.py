@@ -8,8 +8,6 @@ tree = Huffman.create_tree(sentence)
 
 code_array = {}
 CodeCreator.create_code_array(code_array, tree.roots, "")
-
 coded_text = TextChanger.change(sentence, code_array)
-print(coded_text)
 decoded_text = TextHuffmanDecoder.decode(coded_text, tree.roots)
 print(decoded_text)

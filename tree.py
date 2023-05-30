@@ -1,5 +1,5 @@
 from node import Node
-from min_heap import MinHeap
+from min_heap_node import MinHeapNode
 
 
 class Tree:
@@ -13,13 +13,13 @@ class Tree:
         # get first head
         first_head_element = array_of_elements.pop(0)
         array_of_elements.insert(0, array_of_elements.pop())
-        array_of_elements = MinHeap.build_min_heap_using_nodes(array_of_elements)
+        array_of_elements = MinHeapNode.build_min_heap_using_nodes(array_of_elements)
 
         # get second head
         second_head_element = array_of_elements.pop(0)
         if len(array_of_elements) > 0:
             array_of_elements.insert(0, array_of_elements.pop())
-            array_of_elements = MinHeap.build_min_heap_using_nodes(array_of_elements)
+            array_of_elements = MinHeapNode.build_min_heap_using_nodes(array_of_elements)
 
         # create new node
         new_node_key = first_head_element.key + second_head_element.key

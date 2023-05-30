@@ -1,6 +1,6 @@
 from node import Node
 from tree import Tree
-from min_heap import MinHeap
+from min_heap_node import MinHeapNode
 
 
 class Huffman:
@@ -8,9 +8,9 @@ class Huffman:
     def create_tree(sentence):
         list_of_count_of_letters = Huffman.__get_list_of_count_of_letters(sentence)
         list_of_count_of_letters = Huffman.__create_array(list_of_count_of_letters)
-        list_of_count_of_letters = MinHeap.build_min_heap(list_of_count_of_letters)
-
         array_of_nodes = Huffman.__create_array_of_nodes(list_of_count_of_letters)
+        array_of_nodes = MinHeapNode.build_min_heap(array_of_nodes)
+
         return Tree(array_of_nodes)
 
     @staticmethod
