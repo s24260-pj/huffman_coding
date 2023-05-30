@@ -28,8 +28,3 @@ class Tree:
         array_of_elements.append(new_element)
 
         return self.__make(array_of_elements)
-
-# test = []
-# for item in array_of_elements:
-#     test.append([item.key, item.value])
-# # print(test, second_head_element)
