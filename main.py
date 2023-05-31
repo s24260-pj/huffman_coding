@@ -1,13 +1,12 @@
 from huffman import Huffman
-from code_creator_service import CodeCreator
-from text_changer_service import TextChanger
-from text_huffman_decoder_service import TextHuffmanDecoder
 
 sentence = "test ale to nie jest test"
-tree = Huffman.create_tree(sentence)
 
-code_array = {}
-CodeCreator.create_code_array(code_array, tree.roots, "")
-coded_text = TextChanger.change(sentence, code_array)
-decoded_text = TextHuffmanDecoder.decode(coded_text, tree.roots)
+tree = Huffman.create_tree(sentence)
+code_array = Huffman.create_code_array(tree)
+encoded_text = Huffman.encode_text(sentence, code_array)
+decoded_text = Huffman.decode_text(encoded_text, tree)
+
+print(code_array)
+print(encoded_text)
 print(decoded_text)
