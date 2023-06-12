@@ -4,7 +4,7 @@ class MinHeapNode:
         n = int((len(arr) // 2) - 1)
 
         for k in range(n, -1, -1):
-            MinHeapNode.__min_heapify_node(arr, k)
+            MinHeapNode.min_heapify_node(arr, k)
 
         return arr
 
@@ -13,7 +13,7 @@ class MinHeapNode:
         return MinHeapNode.build_min_heap(array_of_nodes)
 
     @staticmethod
-    def __min_heapify_node(arr, i):
+    def min_heapify_node(arr, i):
         left_child = MinHeapNode.__left(i)
         r = MinHeapNode.__right(i)
 
@@ -27,7 +27,23 @@ class MinHeapNode:
 
         if smallest != i:
             arr[i], arr[smallest] = arr[smallest], arr[i]
-            MinHeapNode.__min_heapify_node(arr, smallest)
+            MinHeapNode.min_heapify_node(arr, smallest)
+
+    @staticmethod
+    def insert_node(arr, node):
+        n = len(arr)
+        arr.append(node)
+        MinHeapNode.__heapify(arr, n, n - 1)
+
+    @staticmethod
+    def __heapify(arr, n, i):
+        parent = int(((i - 1) / 2))
+
+        if arr[parent].value > 0:
+            if arr[i].value > arr[parent].value:
+                arr[i], arr[parent] = arr[parent], arr[i]
+
+                MinHeapNode.__heapify(arr, n, parent)
 
     @staticmethod
     def __left(i):
